@@ -1,0 +1,21 @@
+{
+  "name": "radiodan-client.js",
+  "version": "0.0.0",
+  "description": "Client library for Radiodan",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/radiodan/radiodan-client.js.git"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha test/**/test-*.js"
+  },
+  "contributors": [
+    "Andrew Nicolaou <andrew.nicolaou@bbc.co.uk>",
+    "Dan Nuttall <dan.nuttall@bbc.co.uk>"
+  ],
+  "license": "Apache-2",
+  "devDependencies": {
+    "mocha": "~1.17.1"
+  }
+}
