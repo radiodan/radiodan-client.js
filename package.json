@@ -16,7 +16,12 @@
   ],
   "license": "Apache-2",
   "devDependencies": {
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "sinon": "~1.7.3",
+    "chai": "~1.8.1",
+    "chai-as-promised": "~4.1.0",
+    "coveralls": "~2.7.0",
+    "istanbul": "~0.2.4"
   },
   "dependencies": {
     "winston": "~0.7.2",

@@ -1,6 +1,7 @@
 var RadiodanClient  = require('./lib/radiodan-client'),
     MessagingClient = require('./lib/messaging-client'),
-    logger = require('./lib/utils').logger;
+    utils           = RadiodanClient.utils,
+    logger          = utils.logger;
 
 module.exports.create = function (opts) {
   opts = opts || {};
@@ -12,3 +13,5 @@ module.exports.create = function (opts) {
 module.exports.setLogLevel = function (level) {
   logger.setLevel(level);
 };
+
+module.exports.utils = utils;
