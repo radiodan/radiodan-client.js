@@ -8,7 +8,9 @@
     "url": "https://github.com/radiodan/radiodan-client.js.git"
   },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha test/**/test-*.js"
+    "test": "node_modules/mocha/bin/mocha test/**/test-*.js",
+    "coverage": "node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha test/**/test*.js -- --ui bdd -R spec -t 5000",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "contributors": [
     "Andrew Nicolaou <andrew.nicolaou@bbc.co.uk>",
