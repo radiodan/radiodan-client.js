@@ -24,24 +24,38 @@ describe('utils', function (){
   });
 
   describe('#failedPromiseHandler', function() {
-    it('writes the error to a log', function(done) {
+    it('writes Error to the log with error', function(done) {
       var mockError = {error: sinon.spy()},
           handler = subject.failedPromiseHandler(mockError),
-          promise = handler('Failed');
+          promise = handler(new Error('Failed'));
 
-      assert.isRejected(promise).then(function() {
-        assert.ok(mockError.error.calledWith('Failed'));
+      assert.isRejected(promise, Error).then(function() {
+        assert.ok(mockError.error.called);
         done();
       });
     });
 
-    it('returns a rejected promise', function(done){
-      var mockError = {error: function(){}},
+    it('writes message to the log with warn', function(done){
+      var mockError = {warn: sinon.spy()},
           handler = subject.failedPromiseHandler(mockError),
           promise = handler('Failed');
 
-      assert.isRejected(promise).notify(done);
+      assert.isRejected(promise)
+            .then(function () {
+              assert.ok(mockError.warn.called);
+              done();
+            });
     });
+
+    it('returns a rejected promise', function(done){
+      var mockError = {error: sinon.spy()},
+          handler = subject.failedPromiseHandler(mockError),
+          promise = handler(new Error('Failed'));
+
+      assert.isRejected(promise, Error).notify(done);
+    });
+
+
   });
 
   describe('#uuid', function() {
