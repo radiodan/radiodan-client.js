@@ -23,6 +23,20 @@ describe('utils', function (){
     winston.add(winston.transports.Console);
   });
 
+  describe('#mergeObjects', function() {
+    it('merges two js objects', function() {
+      var merged = utils.mergeObjects({a:1}, {b:2});
+
+      assert.deepEqual({a:1, b:2}, merged);
+    });
+
+    it('merges second object on top of the first', function() {
+      var merged = utils.mergeObjects({a:1, c:4}, {a:3, b:2});
+
+      assert.deepEqual({a:3, b:2, c:4}, merged);
+    });
+  });
+
   describe('#failedPromiseHandler', function() {
     it('writes Error to the log with error', function(done) {
       var mockError = {error: sinon.spy()},
