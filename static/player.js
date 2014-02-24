@@ -1,4 +1,5 @@
-var actions = require('./actions.json');
+var actions = require('./actions.json'),
+    xhr     = require('./xhr');
 
 var player = {create: function(id){
   var instance = {};
@@ -6,13 +7,16 @@ var player = {create: function(id){
 
   Object.keys(actions).forEach(function(key, index){
     var action = actions[key];
-    instance[key] = function (params) {
-      return sendCommandForAction(action, params);
+    instance[key] = function (options) {
+      return sendCommandForAction(action, options);
     };
   });
 
-  function sendCommandForAction (action, params) {
-    console.log('sendCommandForAction', action, params);
+  function sendCommandForAction (action, options) {
+    xhr('/radiodan/command/'+id, {action: action, options: options}).then(
+      function(data){console.log('finished', data)}
+    );
+    console.log('sendCommandForAction', action, options);
   }
 
   return instance;
