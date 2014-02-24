@@ -1,18 +1,24 @@
-var RadiodanClient = require('./lib/radiodan-client'),
+var RadiodanClient  = require('./lib/radiodan-client'),
     MessagingClient = require('./lib/messaging-client'),
-    utils = require('./lib/utils'),
-    logger = utils.logger;
+    middleware      = require('./lib/middleware'),
+    utils           = require('./lib/utils'),
+    logger          = utils.logger;
 
-module.exports.create = function(opts) {
-    opts = opts || {};
+function create (opts) {
+  opts = opts || {};
 
-    var client = MessagingClient.create(opts);
-    return RadiodanClient.create(client);
+  var client = MessagingClient.create(opts);
+  return RadiodanClient.create(client);
 };
 
-module.exports.setLogLevel = function(level) {
-    logger.setLevel(level);
+function setLogLevel(level) {
+  logger.setLevel(level);
 };
 
-module.exports.utils = utils;
-module.exports.MessagingClient = MessagingClient;
+module.exports = {
+  create: create,
+  setLogLevel: setLogLevel,
+  utils: utils,
+  MessagingClient: MessagingClient,
+  middleware: middleware
+};
