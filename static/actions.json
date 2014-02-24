@@ -1,0 +1,6 @@
+{
+  "volume": "player.volume",
+  "add":    "playlist.add",
+  "play":   "player.play",
+  "updateDatabase": "database.update"
+}
