@@ -1,6 +1,9 @@
 {
-  "volume": "player.volume",
-  "add":    "playlist.add",
-  "play":   "player.play",
-  "updateDatabase": "database.update"
+  "add": "playlist.add",
+  "clear": "playlist.clear",
+  "pause": "player.pause",
+  "play": "player.play",
+  "search": "database.search",
+  "updateDatabase": "database.update",
+  "volume": "player.volume"
 }
