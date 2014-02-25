@@ -1,4 +1,5 @@
 var actions = require('./actions.json'),
+    Q       = require('q'),
     xhr     = require('./xhr');
 
 var player = {create: function(id){
@@ -13,10 +14,21 @@ var player = {create: function(id){
   });
 
   function sendCommandForAction (action, options) {
-    xhr('/radiodan/command/'+id, {action: action, options: options}).then(
-      function(data){console.log('finished', data)}
-    );
     console.log('sendCommandForAction', action, options);
+    return xhr(
+        '/radiodan/command/'+id,
+        {action: action, options: options}
+    ).then(
+      function(response) {
+        if(response.error) {
+          console.warn('Command failed', response.error);
+          return Q.reject(response.error);
+        } else {
+          console.log('Command completed', response);
+          return Q.resolve(response.data);
+        }
+      }
+    );
   }
 
   return instance;

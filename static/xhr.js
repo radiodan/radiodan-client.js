@@ -11,7 +11,7 @@ module.exports = function(url, params) {
     // so check the status
     if (req.status == 200) {
       // Resolve the promise with the response text
-      deferred.resolve(req.response);
+      deferred.resolve(JSON.parse(req.response));
     }
     else {
       // Otherwise reject with the status text
@@ -32,7 +32,6 @@ module.exports = function(url, params) {
   } else {
     req.send();
   }
-  
 
   return deferred.promise;
 }
