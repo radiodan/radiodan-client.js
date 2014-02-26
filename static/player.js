@@ -1,10 +1,17 @@
 var actions = require('./actions.json'),
     Q       = require('q'),
+    EventEmitter = require('events').EventEmitter,
     xhr     = require('./xhr');
 
 var player = {create: function(id){
-  var instance = {};
-  instance.id = 'radio.' + id;
+  var instance = new EventEmitter(),
+      eventSource;
+
+  instance.path = 'player/' + id;
+
+  subscribeToEvents(function (content) {
+    instance.emit('message', content);
+  });
 
   Object.keys(actions).forEach(function(key, index){
     var action = actions[key];
@@ -16,7 +23,7 @@ var player = {create: function(id){
   function sendCommandForAction (action, options) {
     console.log('sendCommandForAction', action, options);
     return xhr(
-        '/radiodan/command/'+id,
+        '/radiodan/command/' + instance.path,
         {action: action, options: options}
     ).then(
       function(response) {
@@ -29,6 +36,22 @@ var player = {create: function(id){
         }
       }
     );
+  }
+
+  function subscribeToEvents(handler) {
+    if (!eventSource) {
+      eventSource = new EventSource('/radiodan/stream/' + instance.path);
+    }
+
+    eventSource.addEventListener('message', function (evt) {
+      var data;
+      try {
+        data = JSON.parse(evt.data);
+        handler(data.content);
+      } catch (e) {
+        console.error(e);
+      }
+    });
   }
 
   return instance;
