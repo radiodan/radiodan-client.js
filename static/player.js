@@ -8,9 +8,12 @@ var player = {create: function(id){
       eventSource;
 
   instance.path = 'player/' + id;
+  instance.key  = 'event.player.'+id;
 
-  subscribeToEvents(function (content) {
-    instance.emit('message', content);
+  subscribeToEvents(function (data) {
+    var eventName = data.fields.routingKey.replace(instance.key+'.', '');
+    instance.emit(eventName, data.content);
+    instance.emit('message', data.content);
   });
 
   Object.keys(actions).forEach(function(key, index){
@@ -47,7 +50,7 @@ var player = {create: function(id){
       var data;
       try {
         data = JSON.parse(evt.data);
-        handler(data.content);
+        handler(data);
       } catch (e) {
         console.error(e);
       }
