@@ -5,12 +5,13 @@ var actions = require('./actions.json'),
 
 var player = {create: function(id){
   var instance = new EventEmitter(),
+      eventSourcePromise,
       eventSource;
 
   instance.path = 'player/' + id;
   instance.key  = 'event.player.'+id;
 
-  subscribeToEvents(function (data) {
+  eventSourcePromise = subscribeToEvents(function (data) {
     var eventName = data.fields.routingKey.replace(instance.key+'.', '');
     instance.emit(eventName, data.content);
     instance.emit('message', data.content);
@@ -19,7 +20,11 @@ var player = {create: function(id){
   Object.keys(actions).forEach(function(key, index){
     var action = actions[key];
     instance[key] = function (options) {
-      return sendCommandForAction(action, options);
+      return eventSourcePromise.then(
+              function () {
+                return sendCommandForAction(action, options);
+              }
+            );
     };
   });
 
@@ -42,6 +47,8 @@ var player = {create: function(id){
   }
 
   function subscribeToEvents(handler) {
+    var deferred = Q.defer();
+
     if (!eventSource) {
       eventSource = new EventSource('/radiodan/stream/' + instance.path);
     }
@@ -55,6 +62,12 @@ var player = {create: function(id){
         console.error(e);
       }
     });
+
+    eventSource.addEventListener('open', function (evt) {
+      deferred.resolve();
+    });
+
+    return deferred.promise;
   }
 
   return instance;
