@@ -5,6 +5,7 @@
   "pause": "player.pause",
   "play": "player.play",
   "next": "player.next",
+  "status": "player.status",
   "previous": "player.previous",
   "search": "database.search",
   "updateDatabase": "database.update",
