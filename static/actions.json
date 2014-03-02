@@ -1,8 +1,11 @@
 {
   "add": "playlist.add",
+  "remove": "playlist.delete",
   "clear": "playlist.clear",
   "pause": "player.pause",
   "play": "player.play",
+  "next": "player.next",
+  "previous": "player.previous",
   "search": "database.search",
   "updateDatabase": "database.update",
   "volume": "player.volume"
