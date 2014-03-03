@@ -7,6 +7,7 @@
   "next": "player.next",
   "status": "player.status",
   "previous": "player.previous",
+  "status": "player.status",
   "search": "database.search",
   "updateDatabase": "database.update",
   "volume": "player.volume"
