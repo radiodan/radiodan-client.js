@@ -2296,6 +2296,7 @@ return Q;
 }).call(this,require("/Users/dan/Code/radiodan/client/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
 },{"/Users/dan/Code/radiodan/client/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":2}],4:[function(require,module,exports){
 module.exports={
+  "status": "status",
   "volume": "volume"
 }
 
