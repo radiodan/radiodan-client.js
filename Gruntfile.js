@@ -12,7 +12,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: [ "static/**/*.js"],
+      files: [ "static/**/*.js*"],
       tasks: [ 'default' ]
     }
   });
