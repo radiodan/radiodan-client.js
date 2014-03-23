@@ -2293,8 +2293,8 @@ return Q;
 
 });
 
-}).call(this,require("/Users/dan/Code/radiodan/client/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/dan/Code/radiodan/client/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":2}],4:[function(require,module,exports){
+}).call(this,require("/Users/andrew/Projects/oss/radiodan/radiodan-client.js/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/andrew/Projects/oss/radiodan/radiodan-client.js/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":2}],4:[function(require,module,exports){
 module.exports={
   "status": "status",
   "volume": "volume"
@@ -2303,15 +2303,15 @@ module.exports={
 },{}],5:[function(require,module,exports){
 module.exports={
   "add": "playlist.add",
-  "remove": "playlist.delete",
   "clear": "playlist.clear",
+  "next": "player.next",
   "pause": "player.pause",
   "play": "player.play",
-  "next": "player.next",
-  "status": "player.status",
   "previous": "player.previous",
-  "status": "player.status",
+  "remove": "playlist.delete",
   "search": "database.search",
+  "status": "player.status",
+  "stop": "player.stop",
   "updateDatabase": "database.update",
   "volume": "player.volume"
 }
