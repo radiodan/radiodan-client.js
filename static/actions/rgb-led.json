@@ -1,3 +1,5 @@
 {
-  "status": "status"
+  "status": "status",
+  "colour": "colour",
+  "emit": "emit"
 }
