@@ -5,7 +5,7 @@ var Q            = require('q'),
 module.exports = {create: create};
 
 function create(url, namespace, actions) {
-  url       = url.toString() || '';
+  url       = (url || '').toString();
   namespace = namespace || '';
   actions   = actions || {};
 
