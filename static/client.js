@@ -1,6 +1,8 @@
-module.exports = {
-  player: require('./player'),
-  audio:  require('./audio')
+module.exports.create = function (url) {
+  return {
+    player: require('./player')(url),
+    audio:  require('./audio')(url)
+  };
 };
 
-window.radiodan = module.exports;
+window.Radiodan = module.exports;

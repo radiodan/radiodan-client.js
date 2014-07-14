@@ -1,6 +1,7 @@
 var actions = require('./actions/audio.json'),
     commandAndEvents = require('./command-and-events');
 
-var create = commandAndEvents.create('audio', actions);
-
-module.exports = {create: create};
+module.exports = function (url) {
+  var create = commandAndEvents.create(url, 'player', actions);
+  return { create: create };
+};

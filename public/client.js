@@ -2293,8 +2293,8 @@ return Q;
 
 });
 
-}).call(this,require("/Users/andrew/Projects/oss/radiodan/radiodan-client.js/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/andrew/Projects/oss/radiodan/radiodan-client.js/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":2}],4:[function(require,module,exports){
+}).call(this,require("/Users/dan/Code/radiodan/client/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/dan/Code/radiodan/client/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":2}],4:[function(require,module,exports){
 module.exports={
   "status": "status",
   "volume": "volume"
@@ -2308,7 +2308,9 @@ module.exports={
   "pause": "player.pause",
   "play": "player.play",
   "previous": "player.previous",
+  "random": "player.random",
   "remove": "playlist.delete",
+  "repeat": "player.repeat",
   "search": "database.search",
   "status": "player.status",
   "stop": "player.stop",
@@ -2320,17 +2322,20 @@ module.exports={
 var actions = require('./actions/audio.json'),
     commandAndEvents = require('./command-and-events');
 
-var create = commandAndEvents.create('audio', actions);
-
-module.exports = {create: create};
-
-},{"./actions/audio.json":4,"./command-and-events":8}],7:[function(require,module,exports){
-module.exports = {
-  player: require('./player'),
-  audio:  require('./audio')
+module.exports = function (url) {
+  var create = commandAndEvents.create(url, 'player', actions);
+  return { create: create };
 };
 
-window.radiodan = module.exports;
+},{"./actions/audio.json":4,"./command-and-events":8}],7:[function(require,module,exports){
+module.exports.create = function (url) {
+  return {
+    player: require('./player')(url),
+    audio:  require('./audio')(url)
+  };
+};
+
+window.Radiodan = module.exports;
 
 },{"./audio":6,"./player":9}],8:[function(require,module,exports){
 var Q            = require('q'),
@@ -2339,9 +2344,15 @@ var Q            = require('q'),
 
 module.exports = {create: create};
 
-function create(namespace, actions) {
+function create(url, namespace, actions) {
+  url       = url.toString() || '';
   namespace = namespace || '';
   actions   = actions || {};
+
+  // strip trailing / from url
+  if(url[url.length-1] === '/') {
+    url = url.substring(0, url.length-1);
+  }
 
   return function(id) {
     var instance = new EventEmitter(),
@@ -2371,7 +2382,7 @@ function create(namespace, actions) {
     function sendCommandForAction (action, options) {
       console.log('sendCommandForAction', action, options);
       return xhr(
-          '/radiodan/command/' + instance.path,
+          url + '/radiodan/command/' + instance.path,
           {action: action, options: options}
           ).then(
             function(response) {
@@ -2390,7 +2401,7 @@ function create(namespace, actions) {
       var deferred = Q.defer();
 
       if (!eventSource) {
-        eventSource = new EventSource('/radiodan/stream/' + instance.path);
+        eventSource = new EventSource(url + '/radiodan/stream/' + instance.path);
       }
 
       eventSource.addEventListener('message', function (evt) {
@@ -2418,9 +2429,10 @@ function create(namespace, actions) {
 var actions = require('./actions/player.json'),
     commandAndEvents = require('./command-and-events');
 
-var create = commandAndEvents.create('player', actions);
-
-module.exports = {create: create};
+module.exports = function (url) {
+  var create = commandAndEvents.create(url, 'player', actions);
+  return { create: create };
+};
 
 },{"./actions/player.json":5,"./command-and-events":8}],10:[function(require,module,exports){
 var Q = require('q');

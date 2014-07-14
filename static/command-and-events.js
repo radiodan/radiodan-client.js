@@ -4,9 +4,15 @@ var Q            = require('q'),
 
 module.exports = {create: create};
 
-function create(namespace, actions) {
+function create(url, namespace, actions) {
+  url       = url.toString() || '';
   namespace = namespace || '';
   actions   = actions || {};
+
+  // strip trailing / from url
+  if(url[url.length-1] === '/') {
+    url = url.substring(0, url.length-1);
+  }
 
   return function(id) {
     var instance = new EventEmitter(),
@@ -36,7 +42,7 @@ function create(namespace, actions) {
     function sendCommandForAction (action, options) {
       console.log('sendCommandForAction', action, options);
       return xhr(
-          '/radiodan/command/' + instance.path,
+          url + '/radiodan/command/' + instance.path,
           {action: action, options: options}
           ).then(
             function(response) {
@@ -55,7 +61,7 @@ function create(namespace, actions) {
       var deferred = Q.defer();
 
       if (!eventSource) {
-        eventSource = new EventSource('/radiodan/stream/' + instance.path);
+        eventSource = new EventSource(url + '/radiodan/stream/' + instance.path);
       }
 
       eventSource.addEventListener('message', function (evt) {
