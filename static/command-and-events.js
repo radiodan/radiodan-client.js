@@ -35,33 +35,36 @@ function create(url, namespace, actions) {
           function () {
             return sendCommandForAction(action, options);
           }
-          );
+        );
       };
     });
 
     function sendCommandForAction (action, options) {
       console.log('sendCommandForAction', action, options);
-      return xhr(
-          url + '/radiodan/command/' + instance.path,
-          {action: action, options: options}
-          ).then(
-            function(response) {
-              if(response.error) {
-                console.warn('Command failed', response.error);
-                return Q.reject(response.error);
-              } else {
-                console.log('Command completed', response);
-                return Q.resolve(response.data);
-              }
+      var request = xhr(
+            url + '/radiodan/command/' + instance.path,
+            {action: action, options: options}
+          ),
+          parse = function(response) {
+            if(response.error) {
+              console.warn('Command failed', response.error);
+              return Q.reject(response.error);
+            } else {
+              console.log('Command completed', response);
+              return Q.resolve(response.data);
             }
-            );
+          };
+
+      return request.then(parse);
     }
 
     function subscribeToEvents(handler) {
       var deferred = Q.defer();
 
       if (!eventSource) {
-        eventSource = new EventSource(url + '/radiodan/stream/' + instance.path);
+        eventSource = new EventSource(
+          url + '/radiodan/stream/' + instance.path
+        );
       }
 
       eventSource.addEventListener('message', function (evt) {
