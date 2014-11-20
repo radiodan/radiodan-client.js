@@ -1,5 +1,6 @@
 {
   "add": "playlist.add",
+  "load": "playlist.load",
   "clear": "playlist.clear",
   "next": "player.next",
   "pause": "player.pause",
