@@ -1,5 +1,6 @@
 {
   "status": "status",
   "colour": "colour",
+  "change": "change",
   "emit": "emit"
 }
