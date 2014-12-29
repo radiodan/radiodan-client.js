@@ -11,6 +11,7 @@
   "repeat": "player.repeat",
   "search": "database.search",
   "status": "player.status",
+  "seek": "player.seek",
   "stop": "player.stop",
   "updateDatabase": "database.update",
   "volume": "player.volume"
