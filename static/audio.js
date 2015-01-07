@@ -13,5 +13,5 @@ module.exports = function (url) {
     return cache[id];
   }
 
-  return { create: cacheOrCreate };
+  return { create: cacheOrCreate, get: cacheOrCreate };
 };
