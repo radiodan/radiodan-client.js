@@ -23,7 +23,7 @@ method.
 var player = radiodan.player.get('idOfPlayer');
 ```
 
-If you don't know what players are available, you can discover them using the
+If you don't know what players are available, you can find them using the
 `discover()` method.
 
 ```javascript
@@ -31,6 +31,8 @@ radiodan.player.discover().then(function(players) {
   console.log(players); // [ playerObjects ]
 });
 ```
+
+### Searching for content
 
 ## Playlists
 
@@ -45,7 +47,7 @@ existing playlist, or load one you've made or found elsewhere.
 
 ### Adding content to a playlist
 
-The player can add any kind of content, either local to the server:
+The player can add content either local to the server:
 
 ```javascript
 player.add(['newtrack.mp3']);
@@ -85,4 +87,16 @@ playing.
 player.load('http://open.live.bbc.co.uk/mediaselector/5/select/mediaset/http-icy-aac-lc-a/vpid/bbc_radio_one/format/pls.pls')
 ```
 
+Loading a playlist will erase the current playlist in the player.
+
 ### Navigating the playlist
+
+Now you have a playlist ready to go, the player can play, skip, seek and
+otherwise move around it. Full details are in the [API](api/player) but here
+are a few quick examples:
+
+#### Skipping Around Content
+
+#### Playing Randomly
+
+#### Removing Tracks From Playlist
