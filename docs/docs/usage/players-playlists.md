@@ -1,0 +1,88 @@
+What good is a radio without being able to hear anything? Player objects manage
+what content is played out from the server and when. The content is managed
+using playlists, which the player can manipulate.
+
+## Players
+
+In the following examples, assume the radiodan client has been required using:
+
+```javascript
+var radiodan = require('radiodan-client');
+```
+
+### Creation & Discovery
+
+The Radiodan server creates the players for you to interact with. The server
+allows you to create as many as you need, and you can name them however you
+like.
+
+If you know the `id` of the player you want to connect to, use the `get()`
+method.
+
+```javascript
+var player = radiodan.player.get('idOfPlayer');
+```
+
+If you don't know what players are available, you can discover them using the
+`discover()` method.
+
+```javascript
+radiodan.player.discover().then(function(players) {
+  console.log(players); // [ playerObjects ]
+});
+```
+
+## Playlists
+
+From this point on, assume a player has been instantiated using:
+
+```javascript
+var player = radiodan.player.get('idOfPlayer');
+```
+
+Everything a radiodan player plays is loaded via a playlist. You can add to an
+existing playlist, or load one you've made or found elsewhere.
+
+### Adding content to a playlist
+
+The player can add any kind of content, either local to the server:
+
+```javascript
+player.add(['newtrack.mp3']);
+```
+
+Or, a remote location:
+
+```javascript
+player.add(['http://downloads.bbc.co.uk/podcasts/radio4/iot/iot_20141218-1030a.mp3']);
+```
+
+If you want to clear out the current playlist and replace it with this new
+content, pass in the `clear` option.
+
+```javascript
+player.add(['newtrack.mp3'], {clear: true});
+```
+
+Once your content has been loaded into a playlist, the `play()` method will
+start the player off. You can chain the commands together using promises:
+
+```javascript
+player.add(['newtrack.mp3']).then(function() {
+  player.play();
+});
+```
+
+### Loading an existing playlist
+
+The player will accept pre-existing playlists from the server's playlist
+directory, or at a http endpoint. Playlists can be in `m3u`, `m38u` or `pls`
+format. You will still have to set the player to play if it is not currently
+playing.
+
+```javascript
+// load BBC Radio 1
+player.load('http://open.live.bbc.co.uk/mediaselector/5/select/mediaset/http-icy-aac-lc-a/vpid/bbc_radio_one/format/pls.pls')
+```
+
+### Navigating the playlist

@@ -1,0 +1,10 @@
+site_name: Radiodan Client Library
+theme: readthedocs
+pages:
+  - ['index.md', 'Home']
+  - ['overview.md', 'Overview & Tutorial']
+  - ['usage/players-playlists.md', 'Usage', 'Players & Playlists']
+  - ['usage/audio-devices.md', 'Usage', 'Audio Devices']
+  - ['usage/physical-buttons-and-interface.md', 'Usage', 'Physical Buttons & Interface']
+  - ['usage/express-middleware.md', 'Usage', 'Express Middleware']
+  - ['api/player.md', 'API', 'Player']
