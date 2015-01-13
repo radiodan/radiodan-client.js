@@ -50,27 +50,29 @@ existing playlist, or load one you've made or found elsewhere.
 The player can add content either local to the server:
 
 ```javascript
-player.add(['newtrack.mp3']);
+player.add({ playlist: ['newtrack.mp3'] });
 ```
 
 Or, a remote location:
 
 ```javascript
-player.add(['http://downloads.bbc.co.uk/podcasts/radio4/iot/iot_20141218-1030a.mp3']);
+player.add({
+  playlist: ['http://downloads.bbc.co.uk/podcasts/radio4/iot/iot_20141218-1030a.mp3']
+});
 ```
 
 If you want to clear out the current playlist and replace it with this new
 content, pass in the `clear` option.
 
 ```javascript
-player.add(['newtrack.mp3'], {clear: true});
+player.add({ playlist: ['newtrack.mp3'], clear: true });
 ```
 
 Once your content has been loaded into a playlist, the `play()` method will
 start the player off. You can chain the commands together using promises:
 
 ```javascript
-player.add(['newtrack.mp3']).then(function() {
+player.add({ playlist: ['newtrack.mp3'] }).then(function() {
   player.play();
 });
 ```
@@ -84,7 +86,7 @@ playing.
 
 ```javascript
 // load BBC Radio 1
-player.load('http://open.live.bbc.co.uk/mediaselector/5/select/mediaset/http-icy-aac-lc-a/vpid/bbc_radio_one/format/pls.pls')
+player.load({ playlist: 'http://open.live.bbc.co.uk/mediaselector/5/select/mediaset/http-icy-aac-lc-a/vpid/bbc_radio_one/format/pls.pls' })
 ```
 
 Loading a playlist will erase the current playlist in the player.
