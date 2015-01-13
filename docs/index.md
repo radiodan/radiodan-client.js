@@ -4,11 +4,13 @@ This site hosts API documentation and example code for using the Radiodan
 client library. For an explanation of the Radiodan project as a whole, please
 see our [main website](http://radiodan.net).
 
-## Tutorial
+## Getting Started
 
-To get started working with the client library, please see the [overview and
-tutorial](overview.md). The rest of the documentation assumes a level of
-familiarity as outlined in the overview.
+Our [minimal installation guide] [1] will quickly get you set up with
+a working radio app and all the project dependencies. The rest of this
+documentation assumes a working installation from that guide.
+
+[1]: http://radiodan.net/help/tutorials/simplest-radio-laptop-macos.html
 
 ## Usage Documentation
 
