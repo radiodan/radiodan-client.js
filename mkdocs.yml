@@ -2,6 +2,7 @@ site_name: Radiodan Client Library
 theme: readthedocs
 pages:
   - ['index.md', 'Home']
+  - ['usage/overview.md', 'Usage', 'Overview']
   - ['usage/players-playlists.md', 'Usage', 'Players & Playlists']
   - ['usage/audio-devices.md', 'Usage', 'Audio Devices']
   - ['usage/physical-buttons-and-interface.md', 'Usage', 'Physical Buttons & Interface']
