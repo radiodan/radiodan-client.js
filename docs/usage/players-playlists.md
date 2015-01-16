@@ -33,6 +33,7 @@ radiodan.player.discover().then(function(players) {
 ```
 
 ### Searching for content
+TODO
 
 ## Playlists
 
@@ -97,11 +98,57 @@ Now you have a playlist ready to go, the player can play, skip, seek and
 otherwise move around it. Full details are in the [API](api/player) but here
 are a few quick examples:
 
-#### Skipping Around Content
+#### Moving Between Tracks
+These commands will trigger a `player` event on completion.
+
+```javascript
+// play next track
+player.next();
+
+// play previous track
+player.previous();
+
+// play from track in position 4
+player.play({position: 4});
+```
+
+#### Seeking Within a Track
+These commands will trigger a `player` event on completion.
+
+```javascript
+// play from 90 seconds into current track
+player.seek({time: 90});
+
+// play from 5 seconds into track in playlist position 3
+player.seek({time: 90, position: 3});
+
+// skip back 10 seconds from current time
+player.seek({time: '-10'});
+```
 
 #### Playing Randomly
+These commands will trigger a `player` event on completion.
+
+```javascript
+// turn random mode on
+player.random({value: true});
+
+// ..and off again
+player.random({value: false});
+```
 
 #### Removing Tracks From Playlist
+These commands will trigger a `playlist` event on completion. If the playlist
+change effects what the player is currently playing, a `player` event will also
+be triggered.
+
+```javascript
+// remove track from position 2
+player.remove({position: 2});
+
+// remove first 10 tracks
+player.remove({start: 0, end: 9});
+```
 
 ## Events
 
@@ -137,4 +184,4 @@ player.on('player.state', function(state) {
 });
 ```
 
-See the [API Documentation](../api/player.md#events) for a full list of events.
+See the [API Documentation](api/player#events) for a full list of events.
