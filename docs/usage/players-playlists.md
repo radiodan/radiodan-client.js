@@ -75,6 +75,20 @@ player.add({ playlist: ['newtrack.mp3'] }).then(function() {
 });
 ```
 
+### Loading an existing playlist
+
+The player will accept pre-existing playlists from the server's playlist
+directory, or at a http endpoint. Playlists can be in `m3u`, `m38u` or `pls`
+format. You will still have to set the player to play if it is not currently
+playing.
+
+```javascript
+// load BBC Radio 1
+player.load({ playlist: 'http://open.live.bbc.co.uk/mediaselector/5/select/mediaset/http-icy-aac-lc-a/vpid/bbc_radio_one/format/pls.pls' })
+```
+
+Loading a playlist will erase the current playlist in the player.
+
 ### Searching for content
 
 Each player on the server has access to local music content. This content
@@ -100,32 +114,15 @@ accepted but with an empty array. Only malformed search requests are rejected
 by the server.
 
 ```javascript
-// searches for all tracks by artist
-// then appends to playlist and starts playing
+// searches for all tracks by artist then appends to playlist
 player.search({artist: 'Chumped'}).then(
   function(matches) {
     var playlist = matches.map(function(m) { return m.file; });
 
-    return player
-      .add({playlist: playlist})
-      .then(function(){ return player.play(); });
+    return player.add({playlist: playlist});
   }
 );
 ```
-
-### Loading an existing playlist
-
-The player will accept pre-existing playlists from the server's playlist
-directory, or at a http endpoint. Playlists can be in `m3u`, `m38u` or `pls`
-format. You will still have to set the player to play if it is not currently
-playing.
-
-```javascript
-// load BBC Radio 1
-player.load({ playlist: 'http://open.live.bbc.co.uk/mediaselector/5/select/mediaset/http-icy-aac-lc-a/vpid/bbc_radio_one/format/pls.pls' })
-```
-
-Loading a playlist will erase the current playlist in the player.
 
 ### Navigating the playlist
 
@@ -137,14 +134,17 @@ are a few quick examples:
 These commands will trigger a `player` event on completion.
 
 ```javascript
+// play from current position in playlist
+player.play();
+
+// play from track in position 4
+player.play({position: 4});
+
 // play next track
 player.next();
 
 // play previous track
 player.previous();
-
-// play from track in position 4
-player.play({position: 4});
 ```
 
 #### Seeking Within a Track
