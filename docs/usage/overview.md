@@ -4,13 +4,13 @@ getting started on your project.
 
 # Commands
 
-They use promises (link to tutorial).
-
-Your command is sent off to the server.
+** TODO: Find good promises tutorial **
+They use promises (link to tutorial). Your command is sent off to the server for
+processing.
 
 ## Valid Commands
 
-If you command is well-formed, your promise will be accepted. Certain commands
+If you command is well-formed, your promise will be resolved. Certain commands
 return a response data value, e.g. the `search` command on player.
 
 ```javascript
@@ -23,10 +23,8 @@ player.search({artist: "Streetlight Manifesto"}).then(
 
 Other commands are non-determinative __(?)__, for which there is no consistent
 response. In these cases, the promise is resolved when the command has been
-accepted as valid, but you will need to listen for the relevant events to see
-the effect the command has had on the system.
-
-__insert examples here__
+accepted as valid, but you will need to listen for the relevant
+[events](#events) to see the effect the command has had on the system.
 
 ## Invalid Commands
 
@@ -36,6 +34,7 @@ with an error object, so you can see what went wrong.
 
 **TODO: Test this code for legit response**
 ```javascript
+// this command uses invalid arguments
 player.add("track.mp3").then(
   function() {
     console.log("everything is fine");
@@ -50,7 +49,8 @@ player.add("track.mp3").then(
 
 # Events
 
-Events occur in response to:
+When changes happen in the server, events are emitted that relay the change in
+state. Events typically occur in response to:
 
 * a command you have sent
 * a command someone else sent
@@ -62,7 +62,7 @@ best approach. The event list for each object is in the API.
 
 **TODO: Test this code for legit response**
 ```javascript
-player.on('playlist', function(playlist) {
-  # array of playlist items
+player.on('player.state', function(state) {
+  console.log(state); // 'playing'
 });
 ```
