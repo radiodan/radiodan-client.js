@@ -4,7 +4,7 @@ using playlists, which the player can manipulate.
 
 ## Players
 
-In the following examples, assume the radiodan client has been required using:
+In the following examples, assume the Radiodan client has been required using:
 
 ```javascript
 var radiodan = require('radiodan-client');
@@ -42,7 +42,7 @@ From this point on, assume a player has been instantiated using:
 var player = radiodan.player.get('idOfPlayer');
 ```
 
-Everything a radiodan player plays is loaded via a playlist. You can add to an
+Everything a Radiodan player plays is loaded via a playlist. You can add to an
 existing playlist, or load one you've made or found elsewhere.
 
 ### Adding content to a playlist
@@ -102,3 +102,39 @@ are a few quick examples:
 #### Playing Randomly
 
 #### Removing Tracks From Playlist
+
+## Events
+
+Once you've sent out a command, listen out for events in order to see the
+effects your command has had on the system. For example, if you've sent out a
+`next()` command, the player may:
+
+* Move to the next track in the playlist
+* Skip to a random track (if in `random` mode)
+* Move to the top of the playlist (if in `repeat` mode)
+* Stop because it's the end of the playlist
+
+Because the player will accept commands from many clients at once, your command
+might not result in the response you were expecting. The best way to keep up to
+date is to bind an event listener to (in this case) the `player` event.
+
+```javascript
+player.on('player', function(player) {
+  //TODO: Check player object format, insert here
+  player.current // { track object }
+  player.random  // false
+  player.repeat  // true
+  player.state   // 'playing'
+});
+```
+
+In the case of the player event, you can bind to specific sub-states, such as
+the state of the player.
+
+```javascript
+player.on('player.state', function(state) {
+  console.log(state); // 'playing'
+});
+```
+
+See the [API Documentation](../api/player.md#events) for a full list of events.
