@@ -54,7 +54,7 @@ player.search({any: 'funk'});
 
 These search commands return an array of matching track objects, which include
 metadata and file path of each track. The path can be used to enqueue found
-tracks to the current playlist. If no matches are found, the promise will be
+tracks to a playlist. If no matches are found, the promise will be
 accepted but with an empty array. Only malformed search requests are rejected
 by the server.
 
