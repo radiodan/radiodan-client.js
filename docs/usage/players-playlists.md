@@ -155,7 +155,7 @@ These commands will trigger a `player` event on completion.
 player.seek({time: 90});
 
 // play from 5 seconds into track in playlist position 3
-player.seek({time: 90, position: 3});
+player.seek({time: 5, position: 3});
 
 // skip back 10 seconds from current time
 player.seek({time: '-10'});
