@@ -32,46 +32,6 @@ radiodan.player.discover().then(function(players) {
 });
 ```
 
-### Searching for content
-
-Each player on the server has access to local music content. This content
-has been scanned and the metadata compiled into a database. See the radiodan
-server documentation for more details.
-
-From the player object, we can query the database to explore the available
-content.
-
-```javascript
-var player = radiodan.player.get('idOfPlayer');
-
-// look for all tracks by the Artist "Sleater-Kinney"
-// searches are case-insensitive
-player.search({artist: 'sleater-kinney'});
-
-// search for all tracks with the word "Funk" in their metadata
-player.search({any: 'funk'});
-```
-
-These search commands return an array of matching track objects, which include
-metadata and file path of each track. The path can be used to enqueue found
-tracks to a playlist. If no matches are found, the promise will be
-accepted but with an empty array. Only malformed search requests are rejected
-by the server.
-
-```javascript
-// searches for all tracks by artist
-// then appends to playlist and starts playing
-player.search({artist: 'Chumped'}).then(
-  function(matches) {
-    var playlist = matches.map(function(m) { return m.file; });
-
-    return player
-      .add({playlist: playlist})
-      .then(function(){ return player.play(); });
-  }
-);
-```
-
 ## Playlists
 
 From this point on, assume a player has been instantiated using:
@@ -113,6 +73,44 @@ start the player off. You can chain the commands together using promises:
 player.add({ playlist: ['newtrack.mp3'] }).then(function() {
   player.play();
 });
+```
+
+### Searching for content
+
+Each player on the server has access to local music content. This content
+has been scanned and the metadata compiled into a database. See the radiodan
+server documentation for more details.
+
+From the player object, we can query the database to explore the available
+content.
+
+```javascript
+// look for all tracks by the Artist "Sleater-Kinney"
+// searches are case-insensitive
+player.search({artist: 'sleater-kinney'});
+
+// search for all tracks with the word "Funk" in their metadata
+player.search({any: 'funk'});
+```
+
+These search commands return an array of matching track objects, which include
+metadata and file path of each track. The path can be used to enqueue found
+tracks to a playlist. If no matches are found, the promise will be
+accepted but with an empty array. Only malformed search requests are rejected
+by the server.
+
+```javascript
+// searches for all tracks by artist
+// then appends to playlist and starts playing
+player.search({artist: 'Chumped'}).then(
+  function(matches) {
+    var playlist = matches.map(function(m) { return m.file; });
+
+    return player
+      .add({playlist: playlist})
+      .then(function(){ return player.play(); });
+  }
+);
 ```
 
 ### Loading an existing playlist
