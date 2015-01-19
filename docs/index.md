@@ -20,7 +20,7 @@ The following pages help to explain the major objects in the client library:
 * [Players & Playlists](usage/players-playlists.md)
 * [Audio Devices](usage/audio-devices.md)
 * [Physical Buttons & Interface](usage/physical-buttons-and-interface.md)
-* [Expressjs middleware and client-side source code](usage/express-middleware.md)
+* [Connect middleware and client-side source code](usage/connect-middleware.md)
 
 Full API documentation is available here, too.
 

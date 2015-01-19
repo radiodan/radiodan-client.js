@@ -6,6 +6,6 @@ pages:
   - ['usage/players-playlists.md', 'Usage', 'Players & Playlists']
   - ['usage/audio-devices.md', 'Usage', 'Audio Devices']
   - ['usage/physical-buttons-and-interface.md', 'Usage', 'Physical Buttons & Interface']
-  - ['usage/express-middleware.md', 'Usage', 'Express Middleware']
+  - ['usage/connect-middleware.md', 'Usage', 'Connect Middleware']
   - ['api/audio.md', 'API', 'Audio Device']
   - ['api/player.md', 'API', 'Player']
