@@ -1,5 +1,4 @@
-The audio device handles volume control at the sound server level. It currently
-supports **ALSA**, **PulseAudio** and **Core Audio**.
+The audio device handles volume control at the sound server level.
 
 # Why two ways of changing volume?
 
