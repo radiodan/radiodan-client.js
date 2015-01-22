@@ -4,9 +4,8 @@ getting started on your project.
 
 # Commands
 
-** TODO: Find good promises tutorial **
-They use promises (link to tutorial). Your command is sent off to the server for
-processing.
+All Commands send data over to the server for processing, they are inherently
+asynchronous. They use [promises][1].
 
 ## Valid Commands
 
@@ -66,3 +65,5 @@ player.on('player.state', function(state) {
   console.log(state); // 'playing'
 });
 ```
+
+[1]: http://www.html5rocks.com/en/tutorials/es6/promises
