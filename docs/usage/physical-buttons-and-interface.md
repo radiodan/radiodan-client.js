@@ -51,8 +51,6 @@ You can turn rotary encoders. Clockwise, anti-clockwise, you name it and they'll
 twist it.  The sensitivity of the encoder can be set on the server-side, all we
 can do here is wait for events.
 
-**TODO: Why is there only one event for turning?**
-
 ```javascript
 var volumeKnob = rotaryEncoder.get('volume');
 
@@ -65,13 +63,7 @@ volumeKnob.on('turn', function(args) {
 });
 ```
 
-# LEDs
-
-**TODO: Do we expose this to the outer world? Do they need to be documented?**
-
 # RGB LEDs
-
-**TODO: No events emitted? We can't listen for when the light comes on?**
 
 An RGB LED is three coloured LEDs in one. Between them, we can create subtle
 colours and turn the lights on and off. Colours are accepted as an array of
