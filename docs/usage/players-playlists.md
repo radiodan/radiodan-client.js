@@ -32,6 +32,29 @@ radiodan.player.discover().then(function(players) {
 });
 ```
 
+## Volume
+
+Each player has it's own volume controls. If you have multiple players and you
+want to set a global volume, you can set the volume at a [device
+level](audio-devices.md) instead.
+
+Volume level is expressed as an integer percentage *(0-100)*. You can set the
+volume using either an absolute value, or a differential.
+
+```javascript
+// create player object
+var player = radiodan.player.get('main');
+
+// set to 90%
+player.volume({value: 90});
+
+// lower by 20%
+player.volume({diff: -20});
+
+// raise by 10%
+player.volume({diff: 10});
+```
+
 ## Playlists
 
 From this point on, assume a player has been instantiated using:
