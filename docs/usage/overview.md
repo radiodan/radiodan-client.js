@@ -31,7 +31,6 @@ Oh no! You sent out a command, but it wasn't what the server was hoping for.
 These commands will result in a rejected promise. The promise will be rejected
 with an error object, so you can see what went wrong.
 
-**TODO: Test this code for legit response**
 ```javascript
 // this command uses invalid arguments
 player.add("track.mp3").then(
@@ -43,7 +42,7 @@ player.add("track.mp3").then(
   }
 );
 
-# couldn't add track {err: 'Invalid format'}
+//= couldn't add track {err: 'Invalid format'}
 ```
 
 # Events
@@ -59,7 +58,6 @@ state. Events typically occur in response to:
 If you want to keep track of the state of the system, listening to events is the
 best approach. The event list for each object is in the API.
 
-**TODO: Test this code for legit response**
 ```javascript
 player.on('player.state', function(state) {
   console.log(state); // 'playing'

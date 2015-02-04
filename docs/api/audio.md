@@ -10,7 +10,7 @@ Radiodan server documentation for details of supported sound servers.
 Returns the audio device for the Radiodan server.
 
 ```javascript
-var audio = AudioDevice.create();
+var audio = radiodan.device.create();
 ```
 
 ## Instance Methods

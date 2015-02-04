@@ -28,7 +28,7 @@ Returns a player instance connected to a player with the exact same
 id on the server.
 
 ```javascript
-var mainPlayer = Player.get('main-player');
+var mainPlayer = radiodan.player.get('main-player');
 ```
 
 Note that at this stage, player objects are always returned from this method,

@@ -52,7 +52,7 @@ twist it.  The sensitivity of the encoder can be set on the server-side, all we
 can do here is wait for events.
 
 ```javascript
-var volumeKnob = rotaryEncoder.get('volume');
+var volumeKnob = radiodan.rotaryEncoder.get('volume');
 
 volumeKnob.on('turn', function(args) {
   if(args.direction === 'clockwise') {

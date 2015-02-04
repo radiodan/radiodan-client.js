@@ -9,3 +9,6 @@ pages:
   - ['usage/connect-middleware.md', 'Usage', 'Connect Middleware']
   - ['api/audio.md', 'API', 'Audio Device']
   - ['api/player.md', 'API', 'Player']
+  - ['api/button.md', 'API', 'Button']
+  - ['api/rgb-led.md', 'API', 'RGB LED']
+  - ['api/rotary-encoder.md', 'API', 'Rotary Encoder']
