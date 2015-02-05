@@ -1,0 +1,14 @@
+site_name: Radiodan Client Library
+theme: readthedocs
+pages:
+  - ['index.md', 'Home']
+  - ['usage/overview.md', 'Usage', 'Overview']
+  - ['usage/players-playlists.md', 'Usage', 'Players & Playlists']
+  - ['usage/audio-devices.md', 'Usage', 'Audio Devices']
+  - ['usage/physical-buttons-and-interface.md', 'Usage', 'Physical Buttons & Interface']
+  - ['usage/connect-middleware.md', 'Usage', 'Connect Middleware']
+  - ['api/audio.md', 'API', 'Audio Device']
+  - ['api/player.md', 'API', 'Player']
+  - ['api/button.md', 'API', 'Button']
+  - ['api/rgb-led.md', 'API', 'RGB LED']
+  - ['api/rotary-encoder.md', 'API', 'Rotary Encoder']
