@@ -21,11 +21,7 @@ options are a plain Javascript object, with the following keys:
 ### colour
 
 The colour of the light you would like emitted. Colours are represented as an
-array of RGB colours, from 0-255.
-
-### emit
-
-Declares whether the LED should be lit or not. Accepts a boolean.
+array of RGB colours, from 0-255. When all colours at 0, the LED will be unlit.
 
 ### transition
 
@@ -67,13 +63,13 @@ statusRGB.emit({
 });
 ```
 
-### queue
+### change
 
 Sets up multiple LED transitions, to be executed one after the other. Accepts an
 array of emit objects.
 
 ```javascript
-statusRGB.queue({
+statusRGB.change({
   queue: [
     // emit blue over one second
     {
