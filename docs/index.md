@@ -24,6 +24,6 @@ The following pages help to explain the major objects in the client library:
 
 Full API documentation is available here, too.
 
-[1]: http://radiodan.net/help/tutorials/simplest-radio-laptop-macos.html
+[1]: http://radiodan.net/help/tutorials/simplest-radio-laptop.html
 [2]: usage/overview.md
 
