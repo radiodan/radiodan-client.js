@@ -32,7 +32,7 @@
   "dependencies": {
     "winston": "~0.7.2",
     "q": "~1.0.0",
-    "radiodan-messaging-client": "~1.0.0",
+    "radiodan-messaging-client": "~0.1.0",
     "connect": "~2.13.0"
   }
 }
