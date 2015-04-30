@@ -23,8 +23,7 @@ function create(url, namespace, actions) {
     instance.key  = 'event.' + namespace + '.' + id;
 
     eventSourcePromise = subscribeToEvents(function (data) {
-      var eventName = data.fields.routingKey.replace(instance.key+'.', '');
-      instance.emit(eventName, data.content);
+      instance.emit(data.topic, data.content);
       instance.emit('message', data.content);
     });
 
