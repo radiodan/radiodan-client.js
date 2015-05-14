@@ -7,7 +7,7 @@ using playlists, which the player can manipulate.
 In the following examples, assume the Radiodan client has been required using:
 
 ```javascript
-var radiodan = require('radiodan-client');
+var radiodan = require('radiodan-client').create;
 ```
 
 ### Creation & Discovery
